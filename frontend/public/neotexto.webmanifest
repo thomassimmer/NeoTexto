@@ -1,0 +1,18 @@
+{
+    "name": "NeoTexto's progressive web app",
+    "short_name": "NeoTexto",
+    "description": "NeoTexto is a website to help you read texts to improve your foreign languages skills.",
+    "icons": [
+        {
+            "src": "logo.webp",
+            "sizes": "220x280",
+            "type": "image/webp"
+        }
+    ],
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#fef3c7",
+    "background_color": "#fef3c7"
+}
