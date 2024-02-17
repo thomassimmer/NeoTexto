@@ -19,7 +19,31 @@ HEADERS = {
 
 
 def get_chatgpt_translation(word, language_from: Language, language_to: Language):
+    """
+    Translate a word from one language to another using the ChatGPT model.
 
+    Parameters
+    ----------
+    word : str
+        The word to be translated.
+
+    language_from : Language
+        The source language of the word.
+
+    language_to : Language
+        The target language for translation.
+
+    Returns
+    -------
+    translations : List[Translation]
+        A list of Translation objects representing the translations obtained.
+        Each Translation object contains the source word, target word, and examples.
+
+    Raises
+    ------
+    Exception
+        If ChatGPT fails to provide a translation for the given word.
+    """
     prompt = f"""Translate the {language_from.name} word [[{word}]] in {language_to.name}.
 There can be several translations but a maximum of 3. Each translation should have an example.
 Your output must consist only of a JSON object where each key is a translation in {language_to.name} without any article,
@@ -106,7 +130,32 @@ and a key \"target\" and a value that is an example in {language_to.name}."""
 
 
 def get_yandex_translation(word, language_from: Language, language_to: Language):
+    """
+    Translate a word from one language to another using the Yandex Dictionary API.
 
+    Parameters
+    ----------
+    word : str
+        The word to be translated.
+
+    language_from : Language
+        The source language of the word.
+
+    language_to : Language
+        The target language for translation.
+
+    Returns
+    -------
+    translations : List[Translation]
+        A list of Translation objects representing the translations obtained.
+        Each Translation object contains the source word, target word, and examples.
+
+    Raises
+    ------
+    Exception
+        If translations between the given languages are not supported by Yandex.
+        If an error occurs during the translation process.
+    """
     # TODO
     if language_from.code == "zh" or language_to.code == "zh":
         raise Exception(
@@ -203,7 +252,35 @@ def get_yandex_translation(word, language_from: Language, language_to: Language)
 
 
 def get_microsoft_translation(word, language_from: Language, language_to: Language):
+    """
+    Translate a word from one language to another using the Microsoft Translator API.
 
+    Parameters
+    ----------
+    word : str
+        The word to be translated.
+
+    language_from : Language
+        The source language of the word.
+
+    language_to : Language
+        The target language for translation.
+
+    Returns
+    -------
+    translations : List[Translation]
+        A list of Translation objects representing the translations obtained.
+        Each Translation object contains the source word, target word, and examples.
+
+    Notes
+    -----
+    This function supports both single words and phrases for translation.
+
+    Raises
+    ------
+    Exception
+        If an error occurs during the translation process.
+    """
     translations = []
     is_a_group_of_word = len(word.split(" ")) > 1
 
@@ -254,6 +331,30 @@ def get_microsoft_translation(word, language_from: Language, language_to: Langua
 
 
 def make_translate_request(word, language_from: Language, language_to: Language):
+    """
+    Make a request to translate a word from one language to another using the Microsoft Translator API.
+
+    Parameters
+    ----------
+    word : str
+        The word to be translated.
+
+    language_from : Language
+        The source language of the word.
+
+    language_to : Language
+        The target language for translation.
+
+    Returns
+    -------
+    response : Dict
+        A dictionary containing the translation response obtained from the Microsoft Translator API.
+
+    Notes
+    -----
+    This function constructs and sends an HTTP POST request to the Microsoft Translator API to translate the given word.
+    The API version used is '3.0'.
+    """
     path = '/translate'
     constructed_url = ENDPOINT + path
 
@@ -277,6 +378,33 @@ def make_translate_request(word, language_from: Language, language_to: Language)
 
 
 def save_translate_result(json, language_from, language_to: Language, word_source):
+    """
+    Save the translation results obtained from the Microsoft Translator API.
+
+    Parameters
+    ----------
+    json_data : dict
+        The JSON response containing translation data.
+
+    language_from : Language
+        The source language of the translation.
+
+    language_to : Language
+        The target language of the translation.
+
+    word_source : str
+        The source word being translated.
+
+    Returns
+    -------
+    translations : List[Translation]
+        A list of Translation objects representing the saved translations.
+
+    Notes
+    -----
+    This function processes the translation results obtained from the Microsoft Translator API and saves them into the database.
+    It creates Word and Translation objects for each translation and associates them with the source and target languages.
+    """
     translations = []
 
     if json:
@@ -321,6 +449,30 @@ def save_translate_result(json, language_from, language_to: Language, word_sourc
 
 
 def make_dictionnary_lookup_request(word, language_from: Language, language_to: Language):
+    """
+    Make a request to look up a word in the dictionary using the Microsoft Translator API.
+
+    Parameters
+    ----------
+    word : str
+        The word to look up in the dictionary.
+
+    language_from : Language
+        The source language of the word.
+
+    language_to : Language
+        The target language for dictionary lookup.
+
+    Returns
+    -------
+    response : Dict
+        A dictionary containing the dictionary lookup response obtained from the Microsoft Translator API.
+
+    Notes
+    -----
+    This function constructs and sends an HTTP POST request to the Microsoft Translator API to look up the given word in the dictionary.
+    The API version used is '3.0'.
+    """
     path = '/dictionary/lookup'
     constructed_url = ENDPOINT + path
 
@@ -344,6 +496,30 @@ def make_dictionnary_lookup_request(word, language_from: Language, language_to: 
 
 
 def get_dictionnary_lookup(json, language_from: Language, language_to: Language):
+    """
+    Get translations obtained from a dictionary lookup using the Microsoft Translator API.
+
+    Parameters
+    ----------
+    json_data : dict
+        The JSON response containing dictionary lookup data.
+
+    language_from : Language
+        The source language of the translation.
+
+    language_to : Language
+        The target language of the translation.
+
+    Returns
+    -------
+    translations : List[Translation]
+        A list of Translation objects representing the translations obtained from the dictionary lookup.
+
+    Notes
+    -----
+    This function processes the translation results obtained from the dictionary lookup using the Microsoft Translator API.
+    It creates Word and Translation objects for each translation and associates them with the source and target languages.
+    """
     translations = []
 
     if json:
@@ -392,6 +568,31 @@ def get_dictionnary_lookup(json, language_from: Language, language_to: Language)
 
 
 def make_dictionnary_examples_request(translations: List[Translation], language_from: Language, language_to: Language):
+    """
+    Make a request to retrieve dictionary examples for the given translations using the Microsoft Translator API.
+
+    Parameters
+    ----------
+    translations : List[Translation]
+        A list of Translation objects representing the translations for which examples are to be retrieved.
+
+    language_from : Language
+        The source language of the translations.
+
+    language_to : Language
+        The target language of the translations.
+
+    Returns
+    -------
+    response : Dict
+        A dictionary containing the dictionary examples response obtained from the Microsoft Translator API.
+
+    Notes
+    -----
+    This function constructs and sends an HTTP POST request to the Microsoft Translator API to retrieve dictionary examples
+    for the given translations.
+    The API version used is '3.0'.
+    """
     path = '/dictionary/examples'
     constructed_url = ENDPOINT + path
 
@@ -417,6 +618,27 @@ def make_dictionnary_examples_request(translations: List[Translation], language_
 
 
 def get_dictionnary_examples(json, translations: List[Translation]) -> List[Example]:
+    """
+    Get dictionary examples obtained from the Microsoft Translator API.
+
+    Parameters
+    ----------
+    json_data : dict
+        The JSON response containing dictionary examples data.
+
+    translations : List[Translation]
+        A list of Translation objects for which examples are obtained.
+
+    Returns
+    -------
+    examples : List[Example]
+        A list of Example objects representing the dictionary examples obtained.
+
+    Notes
+    -----
+    This function processes the dictionary examples results obtained from the Microsoft Translator API.
+    It creates Example objects for each example and associates them with the corresponding Translation.
+    """
     examples = []
 
     if json:
