@@ -6,6 +6,8 @@
 
 NeoTexto is a platform to improve yourself in languages. You can use it to read texts and easily access translations for words you don't know. Import your texts using copy-paste, or using text detection from an image, or simply by asking ChatGPT to generate a text about a subject you are interested in. Save the words you don't know and practice them in games.
 
+You can see an article I wrote on medium about this [here](https://medium.com/@thomas.simmer/my-first-business-idea-failed-reasons-and-lessons-9de04e89552d).
+
 <center>
 <img clear="left" height="300" src="./docs/images/mobile_home.webp">
 <img clear="right" height="300" src="./docs/images/trad_example.webp">
