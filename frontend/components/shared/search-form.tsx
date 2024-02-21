@@ -13,13 +13,15 @@ import { useState } from "react";
 import LanguageSelector from "./language-selector";
 
 export default function SearchForm() {
+  const axiosPublic = useAxiosAuth();
+
   const { user, setUser } = useUserContext();
-  const [textSubject, setTextSubject] = useState("");
-  const [textIsBeingGenerated, setTextIsBeingGenerated] = useState(false);
   const { textLanguage, setTextLanguage } = useLanguageContext();
   const { generatedTexts, setIdxTextFocusedOn, setGeneratedTexts } =
     useGeneratedTexts();
-  const axiosPublic = useAxiosAuth();
+
+  const [textSubject, setTextSubject] = useState("");
+  const [textIsBeingGenerated, setTextIsBeingGenerated] = useState(false);
   const [error, setError] = useState("");
   const [topicShouldBeRandom, setTopicShouldBeRandom] = useState("");
   const [textLevel, setTextLevel] = useState("intermediate");

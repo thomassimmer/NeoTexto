@@ -8,6 +8,7 @@ import { HiUserCircle } from "react-icons/hi";
 export default function UserImage() {
   const { user }: any = useUserContext();
   const { data: session } = useSession();
+
   const { email, image } = user || {};
 
   if (!image || !session || !session.user || !session.user.image)

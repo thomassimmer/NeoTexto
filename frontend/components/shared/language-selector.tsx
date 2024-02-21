@@ -29,8 +29,9 @@ export default function LanguageSelector({
   setSelectedLanguage: Function;
   className: string;
 }) {
-  const [open, setOpen] = useState(false);
   const { languages } = useLanguageContext();
+
+  const [open, setOpen] = useState(false);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

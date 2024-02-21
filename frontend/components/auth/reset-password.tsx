@@ -11,8 +11,9 @@ export default function ResetPasswordForm({
   showSignInEmailForm,
   showResetPasswordForm,
 }) {
-  const [formErrors, setFormErrors] = useState<string[]>([]);
   const axiosPublic = useAxiosAuth();
+
+  const [formErrors, setFormErrors] = useState<string[]>([]);
   const [formSuccess, setFormSuccess] = useState("");
 
   return (

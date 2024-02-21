@@ -26,11 +26,13 @@ export default function UserProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<CustomUser | null>(null);
   const axiosPublic = useAxiosAuth();
+
   const { data: session }: any = useSession();
   const { setShowIntroductionDialog } = useIntroductionContext();
   const { setTranslationLanguage } = useDefinitionContext();
+
+  const [user, setUser] = useState<CustomUser | null>(null);
 
   useEffect(() => {
     if (session) {

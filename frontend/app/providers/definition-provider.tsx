@@ -41,6 +41,10 @@ export default function DefinitionContextProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const axiosPublic = useAxiosAuth();
+
+  const { status }: any = useSession();
+
   const [definitionContext, setDefinitionContext] =
     useState<DefinitionInterface | null>(null);
   const [definitionAreaIsVisible, setDefinitionAreaIsVisible] = useState(false);
@@ -54,8 +58,6 @@ export default function DefinitionContextProvider({
     useState<TranslationProvider | null>(null);
   const [translationLanguage, setTranslationLanguage] =
     useState<LanguageInterface | null>(null);
-  const axiosPublic = useAxiosAuth();
-  const { status }: any = useSession();
 
   useEffect(() => {
     if (status == "authenticated") {

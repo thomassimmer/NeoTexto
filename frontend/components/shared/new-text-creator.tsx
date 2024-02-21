@@ -15,8 +15,8 @@ import LanguageSelector from "./language-selector";
 import SearchForm from "./search-form";
 
 export default function NewTextCreator() {
-  const [pastedText, setPastedText] = useState("");
-  const [textIsBeingImported, setTextIsBeingImported] = useState(false);
+  const axiosPublic = useAxiosAuth();
+
   const { generatedTexts, setIdxTextFocusedOn, setGeneratedTexts } =
     useGeneratedTexts();
   const {
@@ -27,9 +27,11 @@ export default function NewTextCreator() {
     setShowToast,
     setToastDuration,
   } = useToastContext();
-  const axiosPublic = useAxiosAuth();
-  const [error, setError] = useState("");
   const { textLanguage, setTextLanguage } = useLanguageContext();
+
+  const [error, setError] = useState("");
+  const [pastedText, setPastedText] = useState("");
+  const [textIsBeingImported, setTextIsBeingImported] = useState(false);
 
   const importPastedText = async (data) => {
     setError("");

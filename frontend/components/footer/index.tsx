@@ -8,6 +8,7 @@ import Link from "next/link";
 
 export default function Footer() {
   const scrolled = useScroll(25);
+
   const { setShowContactModal } = useModalContext();
   const { setShowHelpDialog } = useIntroductionContext();
 

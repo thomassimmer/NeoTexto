@@ -6,8 +6,9 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 const useAxiosAuth = () => {
-  const { data: session }: { data: any } = useSession();
   const refresh_token = useRefreshToken();
+
+  const { data: session }: { data: any } = useSession();
 
   useEffect(() => {
     const requestIntercept = axiosPublic.interceptors.request.use(

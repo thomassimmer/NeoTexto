@@ -15,10 +15,12 @@ import { useState } from "react";
 import UserImage from "./user-image";
 
 export default function UserDropdown() {
-  const [openPopover, setOpenPopover] = useState(false);
   const router = useRouter();
+
   const { user } = useUserContext();
   const { isMobile } = useWindowSize();
+
+  const [openPopover, setOpenPopover] = useState(false);
 
   return (
     <Popover

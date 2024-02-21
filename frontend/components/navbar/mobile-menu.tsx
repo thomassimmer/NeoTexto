@@ -11,6 +11,7 @@ import NewTextButton from "../shared/new-text-button";
 export default function MobileMenu() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
   useEffect(() => {

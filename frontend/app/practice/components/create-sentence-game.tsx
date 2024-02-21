@@ -17,15 +17,6 @@ import { useEffect, useState } from "react";
 export default function CreateSentenceGame({ setShowCreateSentenceGame }) {
   const { userTranslations, setUserTranslations } = useDefinitionContext();
   const { languages } = useLanguageContext();
-  const [userSentence, setUserSentence] = useState("");
-  const [gptAnswer, setGptAnswer] = useState("");
-  const [gptIsLoading, setGptIsLoading] = useState(false);
-  const [questionHasBeenAnswered, setQuestionHasBeenAnswered] = useState(false);
-  const [listOfUserTranslations, setListOfUserTranslations] = useState<
-    UserTranslationInterface[]
-  >([]);
-  const [instanceIdx, setInstanceIdx] = useState(0);
-  const [errorInSentence, setErrorInSentence] = useState("");
   const { user, setUser } = useUserContext();
   const {
     setToastCategory,
@@ -36,6 +27,15 @@ export default function CreateSentenceGame({ setShowCreateSentenceGame }) {
     setToastDuration,
   } = useToastContext();
 
+  const [userSentence, setUserSentence] = useState("");
+  const [gptAnswer, setGptAnswer] = useState("");
+  const [gptIsLoading, setGptIsLoading] = useState(false);
+  const [questionHasBeenAnswered, setQuestionHasBeenAnswered] = useState(false);
+  const [listOfUserTranslations, setListOfUserTranslations] = useState<
+    UserTranslationInterface[]
+  >([]);
+  const [instanceIdx, setInstanceIdx] = useState(0);
+  const [errorInSentence, setErrorInSentence] = useState("");
   const [buttonIsClicked, setButtonIsClicked] = useState(false);
 
   const removeFromUserTranslations = async (

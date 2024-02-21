@@ -32,12 +32,14 @@ export default function GeneratedTextsProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const axiosPublic = useAxiosAuth();
+
+  const { status }: any = useSession();
+  const { setTextLanguage } = useLanguageContext();
+
   const [textPanelIsVisible, setTextPanelIsVisible] = useState(false);
   const [generatedTexts, setGeneratedTexts] = useState<TextInterface[]>([]);
   const [idxTextFocusedOn, setIdxTextFocusedOn] = useState("-1");
-  const axiosPublic = useAxiosAuth();
-  const { status }: any = useSession();
-  const { setTextLanguage, languages } = useLanguageContext();
 
   const fetchTexts = useCallback(async () => {
     const res = await axiosPublic.get("/back/api/texts/");

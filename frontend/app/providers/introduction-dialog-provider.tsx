@@ -24,6 +24,7 @@ export default function IntroductionContextProvider({
 }) {
   const [showIntroductionDialog, setShowIntroductionDialog] = useState(false);
   const [showHelpDialog, setShowHelpDialog] = useState(false);
+
   return (
     <IntroductionContext.Provider
       value={{

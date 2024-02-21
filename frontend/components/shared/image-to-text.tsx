@@ -7,15 +7,17 @@ import { useState } from "react";
 import { LoadingDots } from "../icons";
 
 export default function ImageToText() {
-  const [text, setText] = useState("");
+  const axiosPublic = useAxiosAuth();
+
   const { textLanguage, setTextLanguage } = useLanguageContext();
   const { generatedTexts, setIdxTextFocusedOn, setGeneratedTexts } =
     useGeneratedTexts();
   const { user, setUser } = useUserContext();
+
+  const [text, setText] = useState("");
   const [error, setError] = useState("");
   const [importButtonClicked, setImportButtonClicked] = useState(false);
   const [detectButtonClicked, setDetectButtonClicked] = useState(false);
-  const axiosPublic = useAxiosAuth();
 
   interface DetectTextResponse {
     text?: string;

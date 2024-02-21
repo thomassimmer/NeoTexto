@@ -25,14 +25,6 @@ export default function MissingWordGame({ setShowMissingWordGame }) {
   const { generatedTexts } = useGeneratedTexts();
   const { userTranslations, setUserTranslations } = useDefinitionContext();
   const { languages } = useLanguageContext();
-  const [userAnswer, setUserAnswer] = useState("");
-  const [questionHasBeenAnswered, setQuestionHasBeenAnswered] = useState(false);
-  const [userIsRight, setUserRight] = useState(false);
-  const [instanceIdx, setInstanceIdx] = useState(0);
-  const [listOfInstances, setListOfInstances] = useState<
-    MissingWordGameInstance[]
-  >([]);
-  const [listOfAnswers, setListOfAnswers] = useState<string[]>([]);
   const {
     setToastCategory,
     setToastMessage,
@@ -41,6 +33,15 @@ export default function MissingWordGame({ setShowMissingWordGame }) {
     setToastPosition,
     setToastDuration,
   } = useToastContext();
+
+  const [userAnswer, setUserAnswer] = useState("");
+  const [questionHasBeenAnswered, setQuestionHasBeenAnswered] = useState(false);
+  const [userIsRight, setUserRight] = useState(false);
+  const [instanceIdx, setInstanceIdx] = useState(0);
+  const [listOfInstances, setListOfInstances] = useState<
+    MissingWordGameInstance[]
+  >([]);
+  const [listOfAnswers, setListOfAnswers] = useState<string[]>([]);
   const [buttonIsClicked, setButtonIsClicked] = useState(false);
 
   const removeFromUserTranslations = async (

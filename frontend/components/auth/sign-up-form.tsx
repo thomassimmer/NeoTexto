@@ -13,10 +13,12 @@ export default function SignUpForm({
   setSignInClicked,
   showSignUpEmailForm,
 }) {
+  const router = useRouter();
+
+  const { setShowSignInModal } = useModalContext();
+
   const [formSuccess, setFormSuccess] = useState<string>("");
   const [formErrors, setFormErrors] = useState<string[]>([]);
-  const router = useRouter();
-  const { setShowSignInModal } = useModalContext();
 
   return (
     <Form.Root

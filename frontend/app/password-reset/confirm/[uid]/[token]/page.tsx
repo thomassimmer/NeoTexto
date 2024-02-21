@@ -1,7 +1,7 @@
 "use client";
 
 import { useUserContext } from "@/app/providers/user-provider";
-import { SignInModal } from "@/components/auth/sign-in-modal";
+import SignInModal from "@/components/auth/sign-in-modal";
 import Footer from "@/components/footer";
 import { ContactModal } from "@/components/home/contact-modal";
 import { LoadingDots } from "@/components/icons";
@@ -20,12 +20,14 @@ export default function Home({
 }: {
   params: { uid: string; token: string };
 }) {
-  const [formErrors, setFormErrors] = useState<string[]>([]);
   const axiosPublic = useAxiosAuth();
+  const router = useRouter();
+
+  const { user } = useUserContext();
+
+  const [formErrors, setFormErrors] = useState<string[]>([]);
   const [formSuccess, setFormSuccess] = useState("");
   const [signInClicked, setSignInClicked] = useState(false);
-  const router = useRouter();
-  const { user } = useUserContext();
 
   if (user) {
     router.push("/");

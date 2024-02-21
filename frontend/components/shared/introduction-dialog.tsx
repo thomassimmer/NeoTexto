@@ -17,6 +17,7 @@ export const IntroductionDialog = () => {
     setShowHelpDialog,
   } = useIntroductionContext();
   const { user, setUser } = useUserContext();
+
   const [successMessage, setSuccessMessage] = useState("");
   const [selectedLanguage, setSelectedLanguage] =
     useState<LanguageInterface | null>(null);

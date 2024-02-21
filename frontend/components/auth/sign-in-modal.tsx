@@ -11,7 +11,7 @@ import { useState } from "react";
 import ResetPasswordForm from "./reset-password";
 import SignUpForm from "./sign-up-form";
 
-export const SignInModal = () => {
+export default function SignInModal() {
   const {
     showSignInModal,
     signInEmailFormIsVisible,
@@ -20,6 +20,7 @@ export const SignInModal = () => {
     setShowSignInModal,
     showSignUpEmailForm,
   } = useModalContext();
+
   const [signInClicked, setSignInClicked] = useState(false);
   const [resetPasswordFormIsVisible, showResetPasswordForm] = useState(false);
 
@@ -151,4 +152,4 @@ export const SignInModal = () => {
       </div>
     </Modal>
   );
-};
+}

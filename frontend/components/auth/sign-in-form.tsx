@@ -14,9 +14,11 @@ export default function SignInForm({
   showSignInEmailForm,
   showResetPasswordForm,
 }) {
-  const [formErrors, setFormErrors] = useState<string[]>([]);
   const router = useRouter();
+
   const { setShowSignInModal } = useModalContext();
+
+  const [formErrors, setFormErrors] = useState<string[]>([]);
   const [emailVerificationLinkIsSending, setEmailVerificationLinkIsSending] =
     useState(false);
   const [emailVerificationLinkWasSent, setEmailVerificationLinkWasSent] =

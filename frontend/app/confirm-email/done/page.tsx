@@ -2,7 +2,7 @@
 
 import { useModalContext } from "@/app/providers/modal-provider";
 import { useUserContext } from "@/app/providers/user-provider";
-import { SignInModal } from "@/components/auth/sign-in-modal";
+import SignInModal from "@/components/auth/sign-in-modal";
 import Footer from "@/components/footer";
 import { ContactModal } from "@/components/home/contact-modal";
 import Navbar from "@/components/navbar";

@@ -1,8 +1,10 @@
 "use client";
 
 import Footer from "@/components/footer";
-import { ContactModal } from "@/components/home/contact-modal";
+import ContactModal from "@/components/home/contact-modal";
 import Navbar from "@/components/navbar";
+import { HelpDialog } from "@/components/shared/help-dialog";
+import { IntroductionDialog } from "@/components/shared/introduction-dialog";
 import Card from "@/components/ui/card";
 import ToastMessage from "@/components/ui/toast";
 import { redirect } from "next/navigation";
@@ -10,11 +12,10 @@ import { useState } from "react";
 import { useUserContext } from "../providers/user-provider";
 import CreateSentenceGame from "./components/create-sentence-game";
 import MissingWordGame from "./components/missing-word-game";
-import { HelpDialog } from "@/components/shared/help-dialog";
-import { IntroductionDialog } from "@/components/shared/introduction-dialog";
 
 export default function Practice() {
   const { user } = useUserContext();
+
   const [showMissingWordGame, setShowMissingWordGame] = useState(false);
   const [showCreateSentenceGame, setShowCreateSentenceGame] = useState(false);
 
@@ -62,16 +63,14 @@ export default function Practice() {
               />
             ) : (
               <div className="mt-10 flex flex-col gap-5 md:flex-row">
-                {games.map(
-                  ({ title, description, onClick }, index) => (
-                    <Card
-                      key={title}
-                      title={title}
-                      description={description}
-                      onClick={onClick}
-                    />
-                  ),
-                )}
+                {games.map(({ title, description, onClick }, index) => (
+                  <Card
+                    key={title}
+                    title={title}
+                    description={description}
+                    onClick={onClick}
+                  />
+                ))}
               </div>
             )}
           </div>

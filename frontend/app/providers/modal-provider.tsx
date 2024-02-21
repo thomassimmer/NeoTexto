@@ -29,6 +29,7 @@ export default function ModalContextProvider({
   children: React.ReactNode;
 }) {
   const { user } = useUserContext();
+
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [signInEmailFormIsVisible, showSignInEmailForm] = useState(false);

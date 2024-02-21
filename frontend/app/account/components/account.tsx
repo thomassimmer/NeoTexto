@@ -14,12 +14,6 @@ import LanguageSelector from "../../../components/shared/language-selector";
 
 export default function Account() {
   const { user, setUser } = useUserContext();
-  const { email, image } = user || {};
-  const [formErrors, setFormErrors] = useState<string[]>([]);
-  const [saveClicked, setSaveClicked] = useState(false);
-  const [displayedPicture, setDisplayedPicture] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const {
     setToastCategory,
     setToastMessage,
@@ -28,7 +22,17 @@ export default function Account() {
     setToastPosition,
     setToastDuration,
   } = useToastContext();
-  const [selectedLanguage, setSelectedLanguage] = useState(user && user.motherTongue);
+
+  const [formErrors, setFormErrors] = useState<string[]>([]);
+  const [saveClicked, setSaveClicked] = useState(false);
+  const [displayedPicture, setDisplayedPicture] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    user && user.motherTongue,
+  );
+
+  const { email, image } = user || {};
 
   if (image && !displayedPicture) {
     setDisplayedPicture(image);

@@ -26,12 +26,14 @@ export default function LanguageProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const axiosPublic = useAxiosAuth();
+
+  const { data: session }: any = useSession();
+
   const [languages, setLanguages] = useState<LanguageInterface[]>([]);
   const [textLanguage, setTextLanguage] = useState<LanguageInterface | null>(
     null,
   );
-  const axiosPublic = useAxiosAuth();
-  const { data: session }: any = useSession();
 
   useEffect(() => {
     if (session) {

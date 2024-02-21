@@ -23,10 +23,6 @@ export default function TranslationItem({
   translation: TranslationInterface;
 }) {
   const { userTranslations, setUserTranslations } = useDefinitionContext();
-  const [buttonIsClicked, setButtonIsClicked] = useState(false);
-  const [userTranslation, setUserTranslation] = useState<
-    UserTranslationInterface[]
-  >(userTranslations.filter((ut) => ut.translation.id == translation.id));
   const {
     setToastCategory,
     setToastMessage,
@@ -35,6 +31,11 @@ export default function TranslationItem({
     setToastPosition,
     setToastDuration,
   } = useToastContext();
+
+  const [buttonIsClicked, setButtonIsClicked] = useState(false);
+  const [userTranslation, setUserTranslation] = useState<
+    UserTranslationInterface[]
+  >(userTranslations.filter((ut) => ut.translation.id == translation.id));
 
   const addToUserTranslations = async (translation: TranslationInterface) => {
     setButtonIsClicked(true);

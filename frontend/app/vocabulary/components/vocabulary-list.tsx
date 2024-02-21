@@ -7,8 +7,9 @@ import { UserTranslationInterface } from "@/types/types";
 import CloseIcon from "../../../components/icons/close";
 
 export default function VocabularyList() {
-  const { userTranslations, setUserTranslations } = useDefinitionContext();
   const axiosPublic = useAxiosAuth();
+
+  const { userTranslations, setUserTranslations } = useDefinitionContext();
   const {
     setToastCategory,
     setToastMessage,

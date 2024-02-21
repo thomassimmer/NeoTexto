@@ -9,12 +9,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { LoadingDots } from "../icons";
 
-export const ContactModal = () => {
+export default function ContactModal() {
   const { showContactModal, setShowContactModal } = useModalContext();
+  const { user } = useUserContext();
+
   const [sendButtonIsClicked, setSendButtonIsClicked] = useState(false);
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [formSuccess, setFormSuccess] = useState("");
-  const { user } = useUserContext();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
@@ -173,4 +174,4 @@ export const ContactModal = () => {
       </div>
     </Modal>
   );
-};
+}

@@ -23,6 +23,8 @@ export default function Modal({
 }) {
   const desktopModalRef = useRef(null);
 
+  const { isMobile, isDesktop } = useWindowSize();
+
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -36,8 +38,6 @@ export default function Modal({
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
-
-  const { isMobile, isDesktop } = useWindowSize();
 
   return (
     <AnimatePresence>

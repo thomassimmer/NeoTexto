@@ -11,6 +11,7 @@ import LeftButton from "./left-button";
 export default function Navbar() {
   const { user } = useUserContext();
   const { isMobile, isDesktop } = useWindowSize();
+
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   return (

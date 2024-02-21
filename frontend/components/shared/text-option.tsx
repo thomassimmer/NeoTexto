@@ -7,6 +7,8 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 
 export default function TextOption({ text, isMobile, setMobileMenuIsOpen }) {
+  const axiosPublic = useAxiosAuth();
+
   const {
     idxTextFocusedOn,
     generatedTexts,
@@ -15,7 +17,6 @@ export default function TextOption({ text, isMobile, setMobileMenuIsOpen }) {
   } = useGeneratedTexts();
   const { setDefinitionAreaIsVisible, setIndexesWordFocused } =
     useDefinitionContext();
-  const axiosPublic = useAxiosAuth();
 
   const deleteText = async () => {
     await axiosPublic.delete(`/back/api/texts/${text.id}/`);

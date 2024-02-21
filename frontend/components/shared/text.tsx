@@ -16,6 +16,8 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import CloseIcon from "../icons/close";
 
 export default function Text() {
+  const axiosPublic = useAxiosAuth();
+
   const { idxTextFocusedOn, generatedTexts } = useGeneratedTexts();
   const {
     definitionAreaIsVisible,
@@ -31,7 +33,6 @@ export default function Text() {
     setTranslationLanguage,
   } = useDefinitionContext();
   const { user, setUser } = useUserContext();
-  const axiosPublic = useAxiosAuth();
   const {
     setToastCategory,
     setToastMessage,
